@@ -22,19 +22,6 @@
     String.prototype.capitalize = function(){
         return this.charAt(0).toUpperCase()+this.slice(1);
     };
-    function pickWinner(a,b){
-        console.log(a,b);
-        console.log(a+b);
-        if(a == b){
-            updateText('Its a tie!');
-            return;
-        }
-        if(winMap[a+b] !== undefined){
-            updateText(a.capitalize() + " " + winMap[a+b] + " " + b.capitalize() +'You win!');
-        }else{
-            updateText(b.capitalize() + " " + winMap[b+a] + " " + a.capitalize() +'You lost!');
-        }
-    }
     
     $.fn.invisible = function(){
         return this.css('visibility', 'hidden');
@@ -45,13 +32,14 @@
     $(window).ready(function(){
         var messages = [];
         var socket = io.connect('http://localhost:3700');
+        console.log(socket);
         socket.on('begin',function(data){
             roomId = data.roomId;
             playerId = data.playerId;
             console.log("Begun", roomId, playerId);
         });
         socket.on('results', function(data){
-            if(data.winner == ''){
+            if(data.winner === ''){
                 results.text("Its a tie!");
             }
             if(data.winner == playerId){
