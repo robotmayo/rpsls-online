@@ -2,9 +2,9 @@
 'use strict'
 var express = require("express");
 var app = express();
+var port = 3700;
 var io = require("socket.io").listen(app.listen(port));
 var crypto = require('crypto');
-var port = 3700;
 var choices = ['rock','paper','scissors','lizard','spock'];
 var games = {}
 var winMap = {
@@ -25,27 +25,11 @@ function makeGame(playerOneId,playerTwoId, playerOneSocket, playerTwoSocket){
         playerTwo : {id : playerTwoId, move : '', socket : playerTwoSocket}
     };
 }
-
+console.log("wtf")
 io.sockets.on('connection', function(socket){
-    // Check for any other players
-    var waitingPlayers = io.sockets.clients('waiting');
-    // If there are other waiting players lets connect to them
-    if(waitingPlayers.length > 0){
-        var pardna = waitingPlayers.pop();
-        pardna.leave('waiting');
-        var gameRoomId = crypto.randomBytes(16).toString('hex');
-        var playerOneId = crypto.randomBytes(16).toString('hex');
-        var playerTwoId = crypto.randomBytes(16).toString('hex');
-        var game = makeGame(playerOneId,playerTwoId,socket,pardna);
-        socket.emit('begin',{roomId : gameRoomId, playerId : playerOneId });
-        pardna.emit('begin',{roomId : gameRoomId, playerId : playerTwoId });
-        socket.on('picked',picked);
-        pardna.on('picked',picked);
-        games[gameRoomId] = game;
-    }else{
-        socket.join('waiting');
-        console.log('Joined Waiting');
-    }
+    console.log("WTF")
+    socket.join('waiting');
+    console.log('Joined Waiting');
 });
 
 function picked(data){
@@ -84,6 +68,29 @@ function resolve(game){
     }
 }
 
+function checkWaitingRoom(){
+    var waitingPlayers = io.sockets.clients('waiting');
+    console.log("Checking Waiting Room");
+    for(var i = 0; i < Math.floor(waitingPlayers.length / 2); i+=2){
+        if(waitingPlayers[i] != undefined && waitingPlayers[i + 1] != undefined){
+            match(waitingPlayers[i], waitingPlayers[i+1]);
+        }
+    }
+}
 
+function match(socket1, socket2){
+    console.log("Matching Players")
+    socket1.leave('waiting');
+    socket2.leave('waiting');
+    var gameRoomId = crypto.randomBytes(16).toString('hex');
+    var playerOneId = crypto.randomBytes(16).toString('hex');
+    var playerTwoId = crypto.randomBytes(16).toString('hex');
+    var game = makeGame(playerOneId,playerTwoId,socket1,socket2);
+    socket1.emit('begin',{roomId : gameRoomId, playerId : playerOneId });
+    socket2.emit('begin',{roomId : gameRoomId, playerId : playerTwoId });
+    socket1.on('picked',picked);
+    socket2.on('picked',picked);
+    games[gameRoomId] = game;
+}
 
-
+setInterval(checkWaitingRoom,1000);
