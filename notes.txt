@@ -1,0 +1,11 @@
+When you connect check to see if there are any other waiting players
+If there is then setup a game with them
+When the players sends their move the server stores it and waits for the other one
+When both moves are obtained the server resolves and sends back the results
+
+v2
+On connection push socket into waiting room
+Ever X seconds check waiting room to see if anyone can be paired
+If so pair up and start a game
+When game is over reset moves and unlock controls
+*Note -> Add real errors instead of logs :/

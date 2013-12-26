@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <title>Rock Paper Scissor Lizard Spock</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Welcome to RPSLS</h1>
+        </header>
+        <section id="wait">
+            <h2>We are trying to match you with an opponent, please be patient.</h2>
+            <button id="begin">Begin!</button>
+        </section>
+        <section id="game-area">
+            <button>Rock</button>
+            <button>Paper</button>
+            <button>Scissors</button>
+            <button>Lizard</button>
+            <button>Spock</button>
+            <h3 id="results">Waiting for opponent to make his choice...</h3>
+        </section>
+        <script src="js/vendor/jquery/jquery.min.js"></script>
+        <script src="js/vendor/socket.io.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
