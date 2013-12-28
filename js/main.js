@@ -32,7 +32,7 @@
     $(window).ready(function(){
         var messages = [];
         var socket = io.connect('http://localhost:3700');
-        console.log(socket);
+        var buttons = $(results).parent().children('button');
         socket.on('begin',function(data){
             roomId = data.roomId;
             playerId = data.playerId;
@@ -47,8 +47,11 @@
             }else{
                 results.text(data.results[0].capitalize()+" " + data.results[2] + " " + data.results[1].capitalize() + " You Lose!");
             }
+            buttons.each(function(index,element){
+                $(this).attr('disabled',false);
+                $(this).visible();
+            });
         });
-        var buttons = $(results).parent().children('button');
         buttons.click(function(evt){
             socket.emit('picked',{move : $(this).text().toLowerCase(), roomId : roomId, playerId : playerId});
             var self = this;
