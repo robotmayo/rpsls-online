@@ -33,6 +33,9 @@
         var messages = [];
         var socket = io.connect('http://localhost:3700');
         var buttons = $(results).parent().children('button');
+        socket.on('online_count', function(data){
+            $('#online-count').text('('+data.count+')');
+        });
         socket.on('begin',function(data){
             roomId = data.roomId;
             playerId = data.playerId;

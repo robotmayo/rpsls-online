@@ -5,24 +5,40 @@
         <meta http-equiv="X-UA-Compatible" content="IE-edge">
         <title>Rock Paper Scissor Lizard Spock</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/lemons.css">
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <header>
-            <h1>Welcome to RPSLS</h1>
-        </header>
-        <section id="wait">
-            <h2>We are trying to match you with an opponent, please be patient.</h2>
-            <button id="begin">Begin!</button>
-        </section>
-        <section id="game-area">
-            <button>Rock</button>
-            <button>Paper</button>
-            <button>Scissors</button>
-            <button>Lizard</button>
-            <button>Spock</button>
-            <h3 id="results">Waiting for opponent to make his choice...</h3>
-        </section>
+        <div class="container">
+            <div class="row">
+                <header id="main-header">
+                    <div class="col-12">
+                        <h1>Rock Paper Scissors Lizard Spock</h1>
+                        <span>Online <span id="online-count">(0)</span></span>
+                    </div>
+                </header>
+            </div>
+            <div class="row">
+                <section id="game-area">
+                    <div class="col-12"><button id="find-game-btn" class="center-block">Find an Opponent</button></div>
+                    <div id="controls" class="row">
+                        <button class="rock col-2 offset-left-1">rock</button>
+                        <button class="paper col-2">paper</button>
+                        <button class="scissors col-2">scissors</button>
+                        <button class="lizard col-2">lizard</button>
+                        <button class="spock col-2">spock</button>
+                    </div>
+                    <div id="opponent-choice" class="row">
+                        <button class="rock col-2 offset-left-1">rock</button>
+                        <button class="paper col-2">paper</button>
+                        <button class="scissors col-2">scissors</button>
+                        <button class="lizard col-2">lizard</button>
+                        <button class="spock col-2">spock</button>
+                    </div>
+                </section>
+            </div>
+        </div>
         <script src="js/vendor/jquery/jquery.min.js"></script>
         <script src="js/vendor/socket.io.js"></script>
         <script src="js/main.js"></script>

@@ -1,3 +1,47 @@
-#game-area button{
-    font-size: 44px;
+html, body{
+    font-size: 16px;
+}
+
+body{
+    background: #363D3D;
+}
+header div{
+    margin: 0 auto;
+    text-align: center;
+}
+header div h1{
+    color : white;
+    font-size: 3rem;
+    margin-bottom: 0;
+}
+header span{
+    font-size: 2rem;
+    color : #44B2AD;
+}
+
+.center-block {
+    display: block;
+    margin: 0 auto;
+}
+button{
+    background : #42C99D;
+    border: none;
+}
+#game-area{
+    margin-top: 15px;
+}
+#find-game-btn{
+    font-size: 3rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+#controls button{
+    background: white;
+}
+
+@media (min-width: 1200px){
+    header div h1 {
+        font-size: 5em;
+    }
 }

@@ -6,8 +6,10 @@
     var port = 3700;
     var io = require("socket.io").listen(app.listen(port));
     var crypto = require('crypto');
+    var Player = require('./player.js');
     var choices = ['rock','paper','scissors','lizard','spock'];
     var games = {};
+    var numConnections = 0;
     var winMap = {
             'paperrock' : 'covers',
             'paperspock' : 'disproves',
@@ -28,9 +30,21 @@
     }
     io.sockets.on('connection', function(socket){
         socket.join('waiting');
+        Player.createPlayer(socket);
+        console.log(socket.player.getUid());
+        numConnections++;
+        updateOnlineCount();
         console.log('Joined Waiting');
+        socket.on('disconnect', function(socket){
+            numConnections--;
+            updateOnlineCount();
+        });
     });
     
+    function updateOnlineCount(){
+        io.sockets.emit('online_count', {count : numConnections});
+    }
+
     function picked(data){
         var theGame = games[data.roomId];
         if(theGame !== undefined){
