@@ -1,0 +1,126 @@
+/*
+* Lemons.css
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 12/28/13
+*/
+
+/* Base Styles */
+.container{
+    position: relative;
+    width: 100%;
+    margin : 0 auto;
+    padding : 0;
+}
+.row{
+    margin-bottom: 15px;
+}
+.row .row{
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12 {
+    padding-left: 15px;
+    padding-right: 15px;
+    float : left;
+}
+.offset-left-1{
+    margin-left : 8.3333333%;
+}
+.offset-right-1{
+    margin-right : 8.3333333%;
+}
+.col-1 {
+    width: 8.3333333%;
+}
+.col-2 {
+    width: 16.6666667%;
+}
+.col-3 {
+    width: 25%;
+}
+.col-4 {
+    width: 33.3333333%;
+}
+.col-5 {
+    width: 41.6666667%;
+}
+.col-6 {
+    width: 50%;
+}
+.col-7 {
+    width: 58.3333333%;
+}
+.col-8 {
+    width: 66.6666667%;
+}
+.col-9 {
+    width: 75%;
+}
+.col-10 {
+    width: 83.3333333%;
+}
+.col-11 {
+    width: 91.6666667%;
+}
+.col-12 {
+    width: 100%;
+}
+
+.clearfix:before,
+.clearfix:after,
+.row:before,
+.row:after {
+  content: '\0020';
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0; }
+.row:after,
+.clearfix:after {
+  clear: both; }
+.row,
+.clearfix {
+  zoom: 1; }
+
+/* You can also use a <br class="clear" /> to clear columns */
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+/* Laptops/ Tablets */
+@media (min-width: 768px){
+    .container{
+        width: 740px;
+    }
+}
+
+/* Desktops */
+@media (min-width: 992px){
+    .container{
+        width : 970px;
+    }
+}
+
+@media (min-width: 1200px){
+    .container{
+        width: 1170px;
+    }
+}
