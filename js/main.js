@@ -22,13 +22,6 @@
     String.prototype.capitalize = function(){
         return this.charAt(0).toUpperCase()+this.slice(1);
     };
-    
-    $.fn.invisible = function(){
-        return this.css('visibility', 'hidden');
-    };
-    $.fn.visible = function(){
-        return this.css('visibility', 'visible');
-    };
     $(window).ready(function(){
         var messages = [];
         var socket = io.connect('http://localhost:3700');
@@ -36,34 +29,15 @@
         socket.on('online_count', function(data){
             $('#online-count').text('('+data.count+')');
         });
-        socket.on('begin',function(data){
-            roomId = data.roomId;
-            playerId = data.playerId;
-            console.log("Begun", roomId, playerId);
+        socket.on('results',function(data){
+            console.log(data);
         });
-        socket.on('results', function(data){
-            if(data.winner === ''){
-                results.text("Its a tie!");
-            }
-            if(data.winner == playerId){
-                results.text(data.results[0].capitalize()+" " + data.results[2] + " " + data.results[1].capitalize() + " You Win!");
-            }else{
-                results.text(data.results[0].capitalize()+" " + data.results[2] + " " + data.results[1].capitalize() + " You Lose!");
-            }
-            buttons.each(function(index,element){
-                $(this).attr('disabled',false);
-                $(this).visible();
-            });
+        $("#find-game-btn").click(function(evt){
+            socket.emit('find');
         });
-        buttons.click(function(evt){
-            socket.emit('picked',{move : $(this).text().toLowerCase(), roomId : roomId, playerId : playerId});
-            var self = this;
-            $(this).attr('disabled',true);
-            buttons.each(function(index,element){
-                if(element != self){
-                    $(element).invisible();
-                }
-            });
+        $('#controls').children('button').click(function(e){
+            console.log($(this).data('choice'));
+            socket.emit('choice', {choice : $(this).data('choice')});
         });
     });
                     
