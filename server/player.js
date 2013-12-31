@@ -1,7 +1,6 @@
 /* global require, exports */
 var _ = require('underscore')._;
 var gameConstants = require('./gameConstants.js').data;
-console.log(gameConstants);
 exports.createPlayer = function(socket){
     var player = {};
     var uid = socket.id;
@@ -25,6 +24,10 @@ exports.createPlayer = function(socket){
         player.makeChoice(data.choice);
         console.log("Making Choice");
         player.currentGame.compare();
+    });
+    socket.on('again', function(data){
+        player.again = true;
+        player.currentGame.restart();
     });
     player.socket = socket;
     return player;

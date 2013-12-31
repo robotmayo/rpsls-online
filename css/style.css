@@ -35,9 +35,35 @@ button{
     margin-top: 30px;
     margin-bottom: 15px;
 }
+.shrink{
+    height: 0;
+}
+.invisible{
+    visibility: hidden;
+}
+.winner{
+    color : #6DFF96;
+}
+.loser{
+    color : #C94242;
+}
+.choice-block{
+    height: 150px;
+}
+.disabled-btn{
+    opacity: .7;
+}
 
 #controls button{
     background: white;
+}
+#again{
+    font-size: 2rem;
+}
+
+h2, h3{
+    text-align: center;
+    color : white;
 }
 
 @media (min-width: 1200px){

@@ -1,9 +1,9 @@
 /*global window, jQuery */
 (function(window,$){
     $.fn.invisible = function(){
-        return this.css('visibility', 'hidden');
+        return this.addClass('invisible');
     };
     $.fn.visible = function(){
-        return this.css('visibility', 'visible');
+        return this.removeClass('invisible');
     };
 }(window, jQuery));
