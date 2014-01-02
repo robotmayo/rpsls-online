@@ -1,3 +1,4 @@
 node_modules/
 socket.io/
 vendor/
+bower_components/

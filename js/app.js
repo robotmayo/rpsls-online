@@ -47,8 +47,8 @@
         searching = false;
         clearInterval(findIntId);
         findGameBtn.text("Found Player!");
-        findGameBtn.delay(700).fadeOut(500);
-        controls.fadeIn(500);
+        findGameBtn.delay(data.delay || 700).fadeOut(data.fade || 500);
+        controls.fadeIn(data.fade || 500);
     };
     var restartGame = rpsApp.restartGame = function(data){
         ctrlButtons.each(function(index,el){
@@ -65,6 +65,7 @@
         socket.on('results', updateResults);
         socket.on('found', beginGame);
         socket.on('again', restartGame);
+        return socket;
     };
     rpsApp.setupEvents = function(){
         again.click(function(evt){

@@ -5,11 +5,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE-edge">
         <title>Rock Paper Scissor Lizard Spock</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/lemons.css">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/lemons.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../bower_components/mocha/mocha.css">
     </head>
     <body>
+        <div id="mocha-wrapper">
+            <div id="mocha"></div>
+        </div>
         <div class="container">
             <div class="row">
                 <header id="main-header">
@@ -35,11 +39,24 @@
                 </section>
             </div>
         </div>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="bower_components/jquery/jquery.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="bower_components/socket.io-client/dist/socket.io.min.js"></script>
-        <script src="js/app.js"></script>
-        <script src="js/main.js"></script>
+        <script src="../bower_components/jquery/jquery.min.js"></script>
+        <script src="../js/plugins.js"></script>
+        <script src="../bower_components/socket.io-client/dist/socket.io.min.js"></script>
+        <script src="../js/app.js"></script>
+        <script src="../bower_components/mocha/mocha.js"></script>
+        <script src="../bower_components/chai/chai.js"></script>
+        <script>
+          mocha.ui('bdd');
+          mocha.reporter('html');
+          assert = chai.expect;
+        </script>
+        <script src="client-test.js"></script>
+        <script>
+            if(window.mochaPhantomJS){
+                mochaPhantomJS.run()
+            }else{
+                mocha.run();
+            }
+        </script>
     </body>
 </html>

@@ -65,6 +65,12 @@ h2, h3{
     text-align: center;
     color : white;
 }
+#mocha-wrapper{
+    background : white;
+    top : 0;
+    width : 100%;
+    left : 0;
+}
 
 @media (min-width: 1200px){
     header div h1 {
