@@ -1,0 +1,9 @@
+{
+    "name": "Rock Paper Scissors Lizard Spock",
+    "version": "0.9.0",
+    "devDependencies": {
+        "mocha": "*",
+        "socket.io" : "*",
+        "underscore" : "*"
+    }
+}
