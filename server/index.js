@@ -1,10 +1,9 @@
 /* global require, console, setInterval */
 (function(){
     'use strict';
-    var express = require("express");
-    var app = express();
+    var server = require('http').Server();
     var port = 5000;
-    var io = require("socket.io").listen(app.listen(port));
+    var io = require("socket.io").listen(server.listen(port));
     var Game = require('./game.js');
     var numConnections = 0;
 
@@ -17,6 +16,9 @@
         socket.on('disconnect', function(data){
             numConnections--;
             updateOnlineCount();
+            if(socket.currentGame){
+                socket.currentGame.destroy();
+            }
         });
     });
     

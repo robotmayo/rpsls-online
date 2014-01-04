@@ -30,14 +30,7 @@ exports.makeGame = function(socket1,socket2){
             player2.choice = '';
         }
     };
-    game.destroy = function(failed){
-        if(failed){
-            player1.socket.emit('error');
-            player2.socket.emit('error');
-        }else{
-            player1.socket.emit('game_end');
-            player2.socket.emit('game_end');
-        }
+    game.destroy = function(){
         player1.destroyGame();
         player2.destroyGame();
     };

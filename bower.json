@@ -2,11 +2,11 @@
     "name": "Rock,Paper,Scissors,Lizard,Spock : Online",
     "version": "0.9.0",
     "devDependencies": {
-        "mocha": "*",
-        "socket.io-client" : "0.9.16"
+        "mocha": "latest",
+        "chai" : "latest"
     },
     "dependencies" :{
-        "socket.io" : "0.9.16",
+        "socket.io-client" : "0.9.16",
         "underscore" : "latest"
     }
 }
