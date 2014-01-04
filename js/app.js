@@ -3,10 +3,15 @@
     'use strict';
     var rpsApp = window.rpsApp = {};
     var userChoice;
+    var username;
+    var gameStreak;
+    var bestStreak;
+    var serverRecord;
     var controls = $(document.getElementById("controls")).hide();
     var ctrlButtons = controls.children('button');
     var results = $("#results");
     var winLost = $("#winlose");
+    var userNameInput = $("#username").hide();
     var again = $("#again").hide();
     var findGameBtn = $("#find-game-btn");
     var socket;
@@ -65,6 +70,9 @@
     var endGame = rpsApp.endGame = function(){
         controls.fadeOut(options.fadeOut);
     };
+    var isValid = rpsApp.isValid = function(name){
+        return (/^[a-z0-9]+$/i).test(name);
+    };
     rpsApp.setupSocket = function(){
         socket = io.connect('http://localhost:5000');
         socket.on('online_count', updateOnlineCount);
@@ -80,9 +88,17 @@
             again.text("Waiting on Opponent");
         });
         findGameBtn.click(function(evt){
-            if(socket.socket.connected === false) return;
             var self = $(this);
-            if(!searching){
+            if(!userNameInput.is(':visible')) userNameInput.show();
+            username = userNameInput.val();
+            if(!isValid(username) || !username){
+                findGameBtn.text("Please enter a valid username");
+            }else if(isValid(username) && !searching){
+                 if(socket.socket.connected === false){
+                     findGameBtn.text("Server appears to be down. :(");
+                     return;
+                 }
+                userNameInput.hide();
                 socket.emit('find');
                 searching = true;
                 var dots = 0;
