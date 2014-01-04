@@ -1,8 +1,9 @@
 {
-    "name": "Rock,Paper,Scissors,Lizard,Spock : Online",
+    "name": "RPLS Online",
+    "description" : "Play Rock Paper Scissors Lizard Spock online with others using websockets and nodejs!"
     "version": "0.9.0",
     "devDependencies": {
-        "mocha": "*",
+        "mocha": "latest",
         "socket.io-client" : "0.9.16"
     },
     "dependencies" :{
