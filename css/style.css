@@ -57,6 +57,15 @@ button{
 #controls button{
     background: white;
 }
+input{
+    width: 100%;
+    max-width: 13em;
+    display: block;
+    margin : 0 auto;
+    font-size: 48px;
+    font-size: 3em;
+    font-size: 3rem;
+}
 #again{
     font-size: 2rem;
 }
