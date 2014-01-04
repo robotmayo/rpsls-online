@@ -2,8 +2,6 @@
 (function (window, $, io, _){
     'use strict';
     var rpsApp = window.rpsApp = {};
-    var roomId;
-    var playerId;
     var userChoice;
     var controls = $(document.getElementById("controls")).hide();
     var ctrlButtons = controls.children('button');
@@ -11,7 +9,6 @@
     var winLost = $("#winlose");
     var again = $("#again").hide();
     var findGameBtn = $("#find-game-btn");
-    var messages = [];
     var socket;
     var findIntId;
     var searching = false;
