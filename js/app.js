@@ -74,7 +74,7 @@
         socket.on('results', updateResults);
         socket.on('found', beginGame);
         socket.on('again', restartGame);
-        socket.on('opponent_left', endGame);
+        socket.on('game_end', endGame);
         return socket;
     };
     rpsApp.setupEvents = function(){

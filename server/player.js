@@ -6,7 +6,6 @@ exports.createPlayer = function(socket){
     var uid = socket.id;
     player.choice = '';
     player.streak = 0;
-    socket.currentGame = undefined;
     player.getUid = function(){return uid;};
     player.makeChoice = function(choice){
         if(_.contains(gameConstants.choices,choice)){
@@ -16,9 +15,7 @@ exports.createPlayer = function(socket){
         }
     };
     player.destroyGame = function(){
-        if(socket.socket.connected){
-            socket.emit('opponent_left');
-        }
+        socket.emit('game_end');
         socket.currentGame = null;
     };
     socket.on('choice',function(data){

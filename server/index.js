@@ -17,6 +17,7 @@
             numConnections--;
             updateOnlineCount();
             if(socket.currentGame){
+                console.log("Running");
                 socket.currentGame.destroy();
             }
         });

@@ -8,6 +8,8 @@ exports.makeGame = function(socket1,socket2){
     var player2 = Player.createPlayer(socket2);
     socket1.emit('found');
     socket2.emit('found');
+    socket1.currentGame = game;
+    socket2.currentGame = game;
     game.compare = function(){
         var a = player1.choice;
         var b = player2.choice;
