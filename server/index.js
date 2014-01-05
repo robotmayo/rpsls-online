@@ -6,7 +6,6 @@
     var io = require("socket.io").listen(server.listen(port));
     var Game = require('./game.js');
     var numConnections = 0;
-
     io.sockets.on('connection', function(socket){
         numConnections++;
         updateOnlineCount();

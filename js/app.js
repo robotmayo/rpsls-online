@@ -70,9 +70,6 @@
     var endGame = rpsApp.endGame = function(){
         controls.fadeOut(options.fadeOut);
     };
-    var isValid = rpsApp.isValid = function(name){
-        return (/^[a-z0-9]+$/i).test(name);
-    };
     rpsApp.setupSocket = function(){
         socket = io.connect('http://localhost:5000');
         socket.on('online_count', updateOnlineCount);
@@ -89,16 +86,11 @@
         });
         findGameBtn.click(function(evt){
             var self = $(this);
-            if(!userNameInput.is(':visible')) userNameInput.show();
-            username = userNameInput.val();
-            if(!isValid(username) || !username){
-                findGameBtn.text("Please enter a valid username");
-            }else if(isValid(username) && !searching){
+            if(!searching){
                  if(socket.socket.connected === false){
                      findGameBtn.text("Server appears to be down. :(");
                      return;
                  }
-                userNameInput.hide();
                 socket.emit('find');
                 searching = true;
                 var dots = 0;
