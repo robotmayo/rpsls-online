@@ -4,7 +4,7 @@
     var rpsApp = window.rpsApp = {};
     var userChoice;
     var username;
-    var gameStreak;
+    var streak;
     var bestStreak;
     var serverRecord;
     var controls = $(document.getElementById("controls")).hide();
@@ -14,6 +14,9 @@
     var userNameInput = $("#username").hide();
     var again = $("#again").hide();
     var findGameBtn = $("#find-game-btn");
+    var streakText = $("#streaks");
+    var pStreakText = $("#player-streak");
+    var serverStreakText = $("#server-streak");
     var socket;
     var findIntId;
     var searching = false;
@@ -30,9 +33,10 @@
     String.prototype.repeat = function(num){
         return new Array( num + 1 ).join( this );
     };
-    var updateOnlineCount = rpsApp.updateOnlineCount = function(data){
+    var updateMeta = rpsApp.updateMeta = function(data){
         $('#online-count').text('('+data.count+')');
-        return data.count;
+        serverStreakText.text(data.streak);
+        return data;
     };
     var updateResults = rpsApp.updateResults = function(data){
         results.show();
@@ -45,10 +49,13 @@
         if(data.winner){
             winLost.text("You Win!");
             winLost.addClass('winner').removeClass('loser');
+            streak = data.streak;
         }else if(data.winner === false){
             winLost.text("You Lose!");
             winLost.addClass('loser').removeClass('winner');
+            streak = 0;
         }
+        pStreakText.text(streak);
         again.fadeIn(options.fadeIn);
     };
     var beginGame = rpsApp.beginGame = function(data){
@@ -72,7 +79,7 @@
     };
     rpsApp.setupSocket = function(){
         socket = io.connect('http://localhost:5000');
-        socket.on('online_count', updateOnlineCount);
+        socket.on('meta', updateMeta);
         socket.on('results', updateResults);
         socket.on('found', beginGame);
         socket.on('again', restartGame);

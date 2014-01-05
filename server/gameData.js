@@ -1,6 +1,7 @@
 /*global exports*/
-
-exports.data = function(){
+(function(){
+    var serverStreak = 0;
+    exports.data = function(){
     var winMap = {
             'paperrock' : 'covers',
             'paperspock' : 'disproves',
@@ -22,3 +23,13 @@ exports.data = function(){
     ];
     return {winMap : winMap, choices : choices};
 }();
+exports.updateStreak = function(num){
+    if(num > serverStreak) {
+        serverStreak = num;
+        exports.streak = serverStreak;
+    }
+    return serverStreak;
+};
+exports.streak = serverStreak;
+
+}());
