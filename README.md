@@ -7,11 +7,21 @@ Rock Paper Scissors Lizard Spock multiplayer game using node and socket.io
 Instructions
 ============
 
-In the server folder execute:
+Before you can run it, you must install some dependencies. This requires [npm](https://npmjs.org/) and [bower](http://bower.io).
+
+In the server folder run
 
     npm install
-    node index.js
-    cd ../
-    open index.html
+    
+In the root folder run
 
-By default the server listen on port 5000, you can change it within index.js. If you want to run this on a server you need to open up the port.
+    bower install
+
+To start the server, while in the server directory run
+
+    node index.js
+
+
+By default the server listens on port 5000, you can change it within index.js. If you want to run this on a server you need to open up the port.
+
+Finally just open index.html and you are good to play.
